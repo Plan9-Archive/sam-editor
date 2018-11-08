@@ -1,0 +1,48 @@
+A list of known bugs in the MinGW port:
+
+* cmd/src/rc
+	If at the beginning of a command line is a variable definition like in
+		foo=1 cat
+	and the command is interrupted using ^C, then commands started
+	later also see the value of foo.
+
+	Commands like ssh.exe `eat' the console (characters typed in later
+	are not visible anymore)
+
+* lib9/mingw/fdtab
+-	If a file descriptor is dup'ed, only the descriptor entry is duplicated, but
+	not the file or resources. This seems to be ok for all stream-like files, but
+	might cause problems for normal files, if one tried to read or write in the
+	same file at different offsets via the original and a dup'ed fd. Most programs
+	in p9p, though, don't seem to do this.
+
+* cmd/src/sam:
+//* cmd/du:
+* lib9/mingw/dirread:
+-	As there is no `inode' defined on Windows file systems,
+	the qid.path member of a `Dir' struct is always set to
+	zero at the moment. This can be a problem if some code
+	relies on qid.path being equal for the same but not for
+	different files.
+
+	One result of qid.path being always the same can be observed
+	using `du.exe -a': sometimes there are directories missing
+	as there is a seen() function which checks for files already
+	seen -- it is mislead by qid.path.	-- FIXED (workaround in du.c)
+
+	In sam this situation is causing a warning about possibly
+	aliased files (io.c:checkqid()), but it seems not to break
+	consistency.
+
+	Perhaps a string hash of the full path of a file could be
+	used as qid.path, although there would still be a problem
+	in case of collisions.
+
+//* cmd/src/sam:
+//* lib9/mingw/fdtab
+//* programs using announce/listen, or pipe:
+	When the file descriptor of the server side of a named pipe is
+	closed, it is disconnected only, but the handle is not closed. This
+	causes in an increasing number of used handles for each listen()
+	or pipe() call.	-- FIXED.
+

@@ -1,0 +1,6 @@
+1,2c
+#include <u.h>
+#include <libc.h>
+#include <stdio.h>
+.
+0s/^sha1,ba327459bd57de21a5b7570449e409e35afff096/

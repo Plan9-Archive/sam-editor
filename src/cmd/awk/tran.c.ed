@@ -1,0 +1,7 @@
+29,30d
+27d
+25a
+#include <u.h>
+#include <libc.h>
+.
+0s/^sha1,fdc3382c5d0e9def5bbb46e658946ad71ea7521f/

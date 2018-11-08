@@ -1,0 +1,5 @@
+14a
+extern	int fchdir(int);
+
+.
+0s/^sha1,7e345f871af2a1546738aa3d72c5089e7d062a43/
