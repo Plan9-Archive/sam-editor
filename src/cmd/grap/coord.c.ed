@@ -1,0 +1,6 @@
+2,3d
+0a
+#include <u.h>
+#include <libc.h>
+.
+0s/^sha1,413dacba5d0851ab79ffa93ee4efa1342ca68eb7/

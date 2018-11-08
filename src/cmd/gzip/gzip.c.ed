@@ -1,0 +1,13 @@
+87c
+	threadexitsall(ok ? nil: "errors");
+.
+29c
+threadmain(int argc, char *argv[])
+.
+25c
+	threadexitsall("usage");
+.
+4a
+#include <thread.h>
+.
+0s/^sha1,1013c23af353028b6a845cbf22c8c36956653127/
