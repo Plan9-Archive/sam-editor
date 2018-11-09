@@ -82,37 +82,45 @@ is done using one ed script per file.
 
 How to build for mingw
 -------------------
+Download Plan9Port plan9port-20140306.tgz, sam-editor. If not have mingw32, download and install i686-w64-mingw32. 
+Example for GNU/Linux Ubuntu: 'sudo apt-get mingw-w64' 
+Mingw32 need for compile the sam-editor and other warez for Windows OS.
 
-1.	Set `PF9' to the main directory of this distribution. Set cputype
-	and objtype:
-		cputype=lin386
-		objtype=mingw
+		# cd ~/
+		# wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/plan9port/plan9port-20140306.tgz
+		# tar -zxvf plan9port-20140306.tgz
+		# sudo mv plan9port /usr/local/plan9
 
-	You might just run `sh misc/enterpf9' alternatively, which should
-	start an rc shell with these values already set (it won't affect the
-	environment of the calling shell).
-	
-2.	Set PATH to include the necessary bin directories $cputype/bin and
-	$cpusys/bin, i.e. lin386/bin and linux/bin. They should come
-	before the PLAN9/bin directory, to avoid conflicts. If you have
-	run `misc/enterpf9' in step 1, this has already been done.
+*if need # chmod -R u+x /usr/local/plan9		
 
-3.	You should have run `mk pop' once to copy identical source files from
-	your plan9port distribution, and to apply changes, where neccessary.
+		# cd /usr/local/plan9
+		# ./INSTALL
+		# cd ~/
+		# hg clone https://bitbucket.org/jubei85/sam-editor/
+		# sudo mv sam-editor /usr/local/pf9
 
-4.		cd src
-		mk
-		mk install
-	
-	This should build all the programs, on success you will
-	find them in mingw/bin.
+*if need # chmod -R u+x /usr/local/pf9
 
-5.	To get a distribution for windows, e.g. the compiled binaries
-	and additional files like troff fonts from plan9port, look into
-	dist/mingw/mkfile.
+		# cd /usr/local/pf9
+        # cputype=lin386 export cputype
+        # objtype=mingw export objtype
+		# PF9=/usr/local/pf9 export PF9
+        # PLAN9=/usr/local/plan9 export PLAN9
+        # PATH=/usr/local/pf9/lin386/bin:$PATH export PATH
+        # PATH=/usr/local/pf9/linux/bin:$PATH export PATH
+        # PATH=$PATH:$PLAN9/bin export PATH
 
-	This needs some further explanations ...
+*if need configure file /$PF9/mingw/configure
 
+		# ./misc/enterpf
+		# mk pop
+		# cd src
+		# mk
+		# mk install
+		
+All binary files for windos there /$PF9/mingw/bin, injoy!
+		
+		
 
 
 Run it
