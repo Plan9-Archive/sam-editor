@@ -112,7 +112,7 @@ Mingw32 need for compile the sam-editor and other warez for Windows OS.
 
 *if need configure file /$PF9/mingw/configure
 
-		# ./misc/enterpf
+		# ./misc/enterpf9
 		# mk pop
 		# cd src
 		# mk
